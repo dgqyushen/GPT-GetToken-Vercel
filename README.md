@@ -1,0 +1,1 @@
+部署在vercel中，绑定自己的域名实现无翻获取token，感谢penzhile的[方法](https://zhile.io/2023/05/19/how-to-get-chatgpt-access-token-via-pkce.html)
