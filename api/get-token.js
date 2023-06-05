@@ -1,7 +1,6 @@
 module.exports = (req, res) => {
     // 从req.query中获取post中的数据
     const { token } = req.query;
-    // 如果password 等于 123456
 
     const url = "https://auth0.openai.com/oauth/token";
     data = {
