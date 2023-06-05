@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FakeGPT-Token</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    
+    .jumbotron {
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="jumbotron">
+    <h1 class="display-4">FakeGPT</h1>
+    <p class="lead">Enter your refresh-token, then get your real-token </p>
+    <hr class="my-4">
+    <p>Enjoy the service by <a href="https://github.com/dgqyushen">dgqyushen</a></p>
+    <div class="input-group">
+        <input type="text" id="userInput" placeholder="Enter your text">
+        <button class="btn btn-primary" onclick="getToken()" style="margin-top: 20px;">Show Alert</button>
+    </div>
+    
+  </div>
+</body>
+</html>
+
+<script>
+    function getToken() {
+        var userInput = document.getElementById("userInput").value;
+        // 如果输入的是空的，就alert报错
+        if (userInput == "") {
+            alert("Please enter your refresh-token");
+        } else {
+            // 如果输入的不是空的，就发送get请求
+            var xhr = new XMLHttpRequest();
+            // 修改为自己部署的项目的地址，这里是作者自己部署的地址
+            xhr.open("GET", "https://refresh-token-dgqyushen.vercel.app/api/get-token?token=" + userInput, true);
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // 如果请求成功，将response以新的标签页返回
+                    alert("token在控制台中输出")
+                    console.log(xhr.responseText);
+                }
+            }
+        }
+    }
+</script>
